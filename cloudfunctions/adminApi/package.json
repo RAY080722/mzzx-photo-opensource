@@ -1,0 +1,10 @@
+{
+  "name": "adminApi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@cloudbase/node-sdk": "^2.6.0",
+    "cos-nodejs-sdk-v5": "^3.0.0",
+    "qcloud-cos-sts": "^3.1.3"
+  }
+}

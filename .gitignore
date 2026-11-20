@@ -1,0 +1,15 @@
+node_modules
+dist
+.env
+.env.local
+*.local
+*.tsbuildinfo
+.DS_Store
+shots/
+*.zip
+*.tmp
+.preview-*
+.qoder/
+*.qoder.site*
+scripts/signed-urls.json
+github-token.txt

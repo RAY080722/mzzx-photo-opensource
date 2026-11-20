@@ -1,0 +1,8 @@
+{
+  "posts": { "read": true, "write": "auth != null" },
+  "comments": { "read": true, "write": "auth != null" },
+  "likes": { "read": true, "write": "auth != null" },
+  "comment_likes": { "read": true, "write": "auth != null" },
+  "settings": { "read": true, "write": false },
+  "admin_sessions": { "read": false, "write": false }
+}

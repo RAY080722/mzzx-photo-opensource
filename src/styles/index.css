@@ -1,0 +1,274 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  /* 苹果蓝：brand 与 accent 同色，使既有渐变退化为纯净单色 */
+  --color-brand-50: #e8f2fd;
+  --color-brand-400: #2997ff;
+  --color-brand-500: #0071e3;
+  --color-brand-600: #0077ed;
+  --color-accent-400: #2997ff;
+  --color-accent-500: #0071e3;
+}
+
+/* ===== Nudge 设计变量 ===== */
+:root {
+  --site-bg: #ffffff;
+  --site-fg: #1d1d1f;
+  --site-muted: #6e6e73;
+  --site-surface: #f5f5f7;
+  --site-border: #d2d2d7;
+  --site-accent: #0071e3;
+  --site-on-accent: #ffffff;
+  --site-font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --site-radius: 18px;
+  --site-space: 1;
+  --site-type: 1;
+  --site-motion: 1;
+
+  --bg: var(--site-bg);
+  --bg-alt: var(--site-surface);
+  --fg: var(--site-fg);
+  --fg-muted: var(--site-muted);
+  --border: var(--site-border);
+  --accent: var(--site-accent);
+  --card-bg: #ffffff;
+  --nav-bg: rgba(251, 251, 253, 0.8);
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.12);
+  --glass-bg: var(--card-bg);
+  --glass-border: var(--border);
+  --glass-shadow: var(--shadow);
+
+  /* iOS 液态玻璃材质 */
+  --liquid-bg: rgba(120, 120, 128, 0.14);
+  --liquid-bg-hover: rgba(120, 120, 128, 0.22);
+  --liquid-border: rgba(255, 255, 255, 0.55);
+  --liquid-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+.dark {
+  --site-bg: #000000;
+  --site-fg: #f5f5f7;
+  --site-muted: #a1a1a6;
+  --site-surface: #1d1d1f;
+  --site-border: #424245;
+  --site-accent: #2997ff;
+  --site-on-accent: #ffffff;
+
+  --card-bg: #1d1d1f;
+  --nav-bg: rgba(22, 22, 23, 0.8);
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+  --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.6);
+
+  --liquid-bg: rgba(255, 255, 255, 0.14);
+  --liquid-bg-hover: rgba(255, 255, 255, 0.22);
+  --liquid-border: rgba(255, 255, 255, 0.18);
+  --liquid-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.12);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--site-font);
+  font-size: 17px;
+  line-height: 1.47;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color calc(200ms * var(--site-motion, 1)) ease, color calc(200ms * var(--site-motion, 1)) ease;
+  overflow-x: hidden;
+}
+
+/* ===== 苹果风排版 ===== */
+.hero-h1 {
+  font-size: calc(48px * var(--site-type, 1));
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+@media (min-width: 768px) {
+  .hero-h1 { font-size: calc(84px * var(--site-type, 1)); }
+}
+.section-h2 {
+  font-size: calc(30px * var(--site-type, 1));
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+@media (min-width: 768px) {
+  .section-h2 { font-size: calc(46px * var(--site-type, 1)); }
+}
+.eyebrow {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+}
+
+/* ===== 布局 ===== */
+.container-apple {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding-left: calc(24px * var(--site-space, 1));
+  padding-right: calc(24px * var(--site-space, 1));
+}
+.section { padding-top: calc(88px * var(--site-space, 1)); padding-bottom: calc(88px * var(--site-space, 1)); }
+.bg-alt { background-color: var(--bg-alt); }
+.hairline { border-color: var(--border); }
+
+/* ===== 导航（苹果式细窄毛玻璃）===== */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--nav-bg);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ===== iOS 液态玻璃材质 ===== */
+.liquid {
+  background: var(--liquid-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--liquid-border);
+  box-shadow: var(--liquid-shadow);
+}
+
+/* ===== 按钮（pill）===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 980px;
+  font-size: 17px;
+  font-weight: 500;
+  padding: 12px 26px;
+  cursor: pointer;
+  transition: background-color calc(180ms * var(--site-motion, 1)) ease, transform calc(180ms * var(--site-motion, 1)) ease, opacity calc(180ms * var(--site-motion, 1)) ease;
+}
+.btn:active { transform: scale(0.97); }
+.btn-primary {
+  background: var(--liquid-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--liquid-border);
+  box-shadow: var(--liquid-shadow);
+  color: var(--fg);
+}
+.btn-primary:hover { background: var(--liquid-bg-hover); }
+.btn-secondary { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+.btn-secondary:hover { background: color-mix(in srgb, var(--accent) 8%, transparent); }
+.btn-sm { font-size: 14px; padding: 8px 18px; }
+.btn-link { color: var(--accent); padding: 0; font-size: 17px; }
+.btn-link:hover { text-decoration: underline; }
+
+/* ===== 表面 / 卡片 ===== */
+.glass {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+.glass-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--site-radius, 18px);
+  box-shadow: var(--shadow);
+  transition: transform calc(300ms * var(--site-motion, 1)) cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow calc(300ms * var(--site-motion, 1)) ease;
+}
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.text-muted { color: var(--fg-muted); }
+
+/* ===== 跑马灯照片带 ===== */
+.marquee-mask {
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.marquee {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: marquee 48s linear infinite;
+}
+.marquee:hover { animation-play-state: paused; }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ===== 表单 ===== */
+input, select, textarea, button { font-family: inherit; }
+
+/* 放入 components 层，让内边距与宽度工具类可覆盖 */
+@layer components {
+  .field {
+    width: 100%;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--site-radius, 18px) * 0.66);
+    padding: 11px 16px;
+    font-size: 15px;
+    color: var(--fg);
+    outline: none;
+    transition: border-color calc(180ms * var(--site-motion, 1)), box-shadow calc(180ms * var(--site-motion, 1));
+  }
+  .field:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent);
+  }
+  .field::placeholder { color: var(--fg-muted); }
+}
+
+/* ===== 瀑布流 ===== */
+.masonry { column-gap: calc(20px * var(--site-space, 1)); columns: 1; }
+@media (min-width: 640px) { .masonry { columns: 2; } }
+@media (min-width: 1024px) { .masonry { columns: 3; } }
+@media (min-width: 1536px) { .masonry { columns: 4; } }
+.masonry > * { break-inside: avoid; margin-bottom: calc(20px * var(--site-space, 1)); }
+
+/* ===== 滚动条 ===== */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--fg-muted) 40%, transparent);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+/* ===== 主题切换丝滑转场 ===== */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) { z-index: 1; }
+::view-transition-new(root) { z-index: 2147483646; }
+
+/* 降级：不支持 View Transitions 时全局柔和交叉淡入 */
+.theme-anim,
+.theme-anim *,
+.theme-anim *::before,
+.theme-anim *::after {
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease,
+    box-shadow 0.5s ease, fill 0.5s ease, stroke 0.5s ease !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
